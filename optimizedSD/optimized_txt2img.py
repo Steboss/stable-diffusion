@@ -29,8 +29,8 @@ def load_model_from_config(ckpt, verbose=False):
     return sd
 
 
-config = "optimizedSD/v1-inference.yaml"
-ckpt = "models/ldm/stable-diffusion-v1/model.ckpt"
+config = "/content/stable-diffusion/optimizedSD/v1-inference.yaml"
+ckpt = "drive/MyDrive/StableDiffusionV14/model.ckpt"
 device = "cuda"
 
 parser = argparse.ArgumentParser()
@@ -193,6 +193,7 @@ else:
 
 model = instantiate_from_config(config.modelUNet)
 _, _ = model.load_state_dict(sd, strict=False)
+model.half()
 model.eval()
     
 modelCS = instantiate_from_config(config.modelCondStage)
